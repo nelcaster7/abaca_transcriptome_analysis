@@ -1,0 +1,4 @@
+Command lines:
+
+Quality checking using fastqc
+fastqc ${i}  #where i = variety
