@@ -16,3 +16,11 @@ STAR \
 --outFilterMatchNmin 5 \
 --outFilterScoreMinOverLread 0.3 --outFilterMatchNminOverLread 0.3
 
+#Quantifying read counts 
+featureCounts \
+-t exon \
+-g transcript_id \
+--primary \
+-a Mbal.gtf  \
+-o feature_counts/transcripts_featureCounts.txt \
+abaca_Aligned.out.sorted.bam
