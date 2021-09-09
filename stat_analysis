@@ -5,7 +5,7 @@ df <- read.csv("inosa_pacol_counts.csv",header=TRUE)
 replicates <- c("Inosa","Pacol")
 groups <- list(NDE=c(1,1), DE = c(1,2))
 seglens <-read.csv("abaca_pacol_length.csv",header=T)
-CD <- new("countData", data = as.matrix(df[,2:3]), replicates = replicates, groups = groups)
+CD <- new("countData", data = as.matrix(df[,2:3]), replicates = replicates, seglens = seglens, groups = groups)
 CD@annotation <- data.frame(name = df[1])
 CD1 <- CD[rowSums(CD@data)>20,]
 libsizes(CD1) <- getLibsizes(CD1, estimationType = "edgeR")
