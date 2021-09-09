@@ -1,0 +1,24 @@
+Abuab vs Inosa vs Tangongon (GDE)
+> summary(CD@data)
+       A                I                  T          
+ Min.   :     0   Min.   :     0.0   Min.   :    0.0  
+ 1st Qu.:     2   1st Qu.:     2.0   1st Qu.:    2.0  
+ Median :    49   Median :    21.0   Median :   31.0  
+ Mean   :   278   Mean   :   175.7   Mean   :  217.5  
+ 3rd Qu.:   240   3rd Qu.:   121.0   3rd Qu.:  188.0  
+ Max.   :176167   Max.   :128676.0   Max.   :77965.0  
+> summary(CD1@data)
+       A                  I                  T          
+ Min.   :     0.0   Min.   :     0.0   Min.   :    0.0  
+ 1st Qu.:    44.0   1st Qu.:    19.0   1st Qu.:   27.0  
+ Median :   141.0   Median :    64.0   Median :  103.0  
+ Mean   :   404.4   Mean   :   255.3   Mean   :  316.6  
+ 3rd Qu.:   385.0   3rd Qu.:   215.0   3rd Qu.:  308.0  
+ Max.   :176167.0   Max.   :128676.0   Max.   :77965.0  
+> hist(log(CD1@data[,1]))
+> cor(CD1@data[,1],CD1@data[,2], method = c("spearman"))
+[1] 0.8137009
+> cor(CD1@data[,1],CD1@data[,3], method = c("spearman"))
+[1] 0.8926849
+> cor(CD1@data[,2],CD1@data[,3], method = c("spearman"))
+[1] 0.9201379
