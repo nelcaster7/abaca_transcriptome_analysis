@@ -1,4 +1,18 @@
 Command lines:
 
-Quality checking using fastqc
+#Quality checking using fastqc
 fastqc ${i}  #where i = variety
+
+#Aligning reads 
+STAR \
+--runThreadN 12 \
+--genomeDir /home/nereful/scratch_nereful/reference_genomes/Musab/Musab_index \
+--readFilesIn BandalaUnmapped.out.mate1 BandalaUnmapped.out.mate2 \
+--outFileNamePrefix Bandala_unmapped_reads_mapped_to_Mbal \
+--outSAMtype BAM Unsorted \
+--outSAMattributes Standard \
+--outReadsUnmapped Fastx \
+--outFilterMultimapNmax 100 \
+--outFilterMatchNmin 5 \
+--outFilterScoreMinOverLread 0.3 --outFilterMatchNminOverLread 0.3
+
