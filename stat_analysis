@@ -8,9 +8,25 @@ seglens <-read.csv("abaca_pacol_length.csv",header=T)
 CD <- new("countData", data = as.matrix(df[,2:3]), replicates = replicates, seglens = seglens, groups = groups)
 CD@annotation <- data.frame(name = df[1])
 CD1 <- CD[rowSums(CD@data)>20,]
-libsizes(CD1) <- getLibsizes(CD1, estimationType = "edgeR")
+libsizes(CD1) <- getLibsizes(CD1, estimationType = "edgeR") #uses edgeR's TMM
 CD1 <- getPriors.NB(CD1, samplesize = 10000, estimation = "edgeR", cl = cl)
 CD1 <- getLikelihoods(CD1, cl = cl, bootStraps = 3, verbose = FALSE)
 plotMA.CD1(CD1, samplesA = "A", samplesB = "P")
 table = topCounts(CD1, group="DE", number=nrow(df),normaliseData=TRUE)
 write.table(table, file = "output.txt", col.names = T, row.names = T, sep = "\t")
+
+
+#Generating normalized read counts using edgeR's TMM 
+library("edgeR")
+x <- read.delim("eqtl_numreads_wheat.txt",row.names="Name")
+group <- factor(c(1,2,3,4,5,6))
+y <- DGEList(counts=x,group=group)
+#remove low read counts
+keep <- rowSums(cpm(y)>1) >= 3
+y <- y[keep, , keep.lib.sizes=FALSE]
+y <- calcNormFactors(y)
+
+#Generating horizontal bar graph
+x<-read.delim("clipboard",header=T)
+data<-data.frame(x)
+ggplot(data,aes(x=reorder(GO, +Number),y=Number))+geom_bar(stat="identity", fill="seagreen")+coord_flip()+scale_fill_brewer(palette="Paired")+theme_minimal() + theme(text = element_text(size=15))
