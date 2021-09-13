@@ -29,4 +29,6 @@ y <- calcNormFactors(y)
 #Generating horizontal bar graph
 x<-read.delim("clipboard",header=T)
 data<-data.frame(x)
-ggplot(data,aes(x=reorder(GO, +Number),y=Number))+geom_bar(stat="identity", fill="seagreen")+coord_flip()+scale_fill_brewer(palette="Paired")+theme_minimal() + theme(text = element_text(size=15))
+m1 <- ggplot(data,aes(x=reorder(GO, +Number),y=Number))+geom_bar(stat="identity", fill="seagreen")+coord_flip()+scale_fill_brewer(palette="Paired")+theme_minimal() + theme(text = element_text(size=15))
+
+multiplot(m1, m2, m3, col = 3) 
