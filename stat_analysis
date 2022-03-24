@@ -18,7 +18,7 @@ write.table(table, file = "output.txt", col.names = T, row.names = T, sep = "\t"
 
 #Generating normalized read counts using edgeR's TMM 
 library("edgeR")
-x <- read.delim("eqtl_numreads_wheat.txt",row.names="Name")
+x <- read.delim("numreads_abaca.txt",row.names="Name")
 group <- factor(c(1,2,3,4,5,6))
 y <- DGEList(counts=x,group=group)
 #remove low read counts
